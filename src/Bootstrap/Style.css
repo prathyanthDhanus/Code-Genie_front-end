@@ -1,0 +1,32 @@
+.home-course{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap:10px;
+    justify-content: space-between;
+}
+.home-container{
+    max-width: 900fr;
+    margin: auto;
+}
+.profile-form {
+    & .MuiTextField-root {
+      margin: 1rem;
+      width: 95%;
+      
+    }
+    
+    width: 23rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 1rem;
+    /* background-color: blue; */
+   
+    
+    
+    @media (max-width: 600px) {
+      width: 90%; /* Adjust width for smaller screens */
+    }
+  }
+
+ 
