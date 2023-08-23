@@ -6,20 +6,37 @@ import { useRef } from 'react';
 import { Link } from "react-router-dom";
 // import { Form } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 import axios from 'axios';
 
 
 const Login = () => {
   const inputRef = useRef(null);
+  const [showPassword, setShowPassword] = React.useState(false);
   // const userDetails = useSelector(state => state.user.users);
   const navigate = useNavigate();
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const userName = inputRef.current.username.value;
     const passWord = inputRef.current.password.value;
-    console.log(userName,passWord)
+    // console.log(userName,passWord)
 
     try {
       const response = await axios.post('http://localhost:3000/admin/login', { username: userName, password: passWord });
@@ -37,18 +54,20 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className='login_signup'>
       {/* <h6>ADMIN LOGIN</h6> */}
-     
-      <img src='https://t3.ftcdn.net/jpg/03/39/70/90/360_F_339709048_ZITR4wrVsOXCKdjHncdtabSNWpIhiaR7.jpg'/>
+
 
       <Box
+        className="profile-form"
         component="form"
         ref={inputRef}
         onSubmit={(e) => { e.preventDefault() }}
         noValidate
         autoComplete="on"
       >
+        <img src='https://t3.ftcdn.net/jpg/03/39/70/90/360_F_339709048_ZITR4wrVsOXCKdjHncdtabSNWpIhiaR7.jpg' />
+
         <TextField
           required
           id="outlined-required"
@@ -56,16 +75,33 @@ const Login = () => {
           name='username'
 
         />
-        <TextField
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          name='password'
-          autoComplete="current-password"
-        />
-        <Button variant="outlined" color="success" type="submit" onClick={handleSubmit}>
+        <FormControl sx={{ m: 2, width: '20rem' }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ? 'text' : 'password'}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+            name='password'
+          />
+        </FormControl>
+        <Button variant="outlined" color="success" style={{ marginLeft: "1rem" }} type="submit" onClick={handleSubmit}>
           Login
         </Button>
+        <FormGroup>
+  <FormControlLabel control={<Checkbox defaultChecked />} label="Are you an admin?" />
+  </FormGroup>
         <p>
           Create a new account <Link to="/signup">Signup</Link>
         </p>

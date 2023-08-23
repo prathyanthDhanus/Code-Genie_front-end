@@ -29,8 +29,8 @@ const Profiledetails = () => {
     // console.log(profileData)
     try {
       const response = await axios.post('http://localhost:3000/student/profile', profileData)
-      console.log(response.data)
-      if (response.data.status === "success") {
+      // console.log(response.data)
+      if (response.status === 200) {
         alert("profile saved successfully")
       } else {
         console.log("Something went wrong");
