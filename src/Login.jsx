@@ -16,13 +16,14 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-
 import axios from 'axios';
+import { useState } from 'react';
 
 
 const Login = () => {
   const inputRef = useRef(null);
   const [showPassword, setShowPassword] = React.useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   // const userDetails = useSelector(state => state.user.users);
   const navigate = useNavigate();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -34,16 +35,30 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const userName = inputRef.current.username.value;
+    let userName;
+    let eMail;
+
+    if (isAdmin) {
+      userName = inputRef.current.username.value;
+    } else {
+      eMail = inputRef.current.email.value;
+    }
     const passWord = inputRef.current.password.value;
-    // console.log(userName,passWord)
+    // console.log(userName,passWord,eMail)
 
     try {
-      const response = await axios.post('http://localhost:3000/admin/login', { username: userName, password: passWord });
-
+      // const response = await axios.post('http://localhost:3000/admin/login', { username:userName, email:eMail, password:passWord });
+      const url = isAdmin ? "http://localhost:3000/admin/login" : "http://localhost:3000/student/login";
+      const response = await axios.post(url, { username: userName, email: eMail, password: passWord });
+      
       if (response.data.status === "success") {
         alert('Login success!!!!!!!!')
-        navigate("/")
+        if(isAdmin){
+          navigate("/studentdetails")
+        }else{
+          navigate("/")
+        }
+        
       } else {
         console.log("username passsword missmatch")
       }
@@ -67,14 +82,20 @@ const Login = () => {
         autoComplete="on"
       >
         <img src='https://t3.ftcdn.net/jpg/03/39/70/90/360_F_339709048_ZITR4wrVsOXCKdjHncdtabSNWpIhiaR7.jpg' />
-
-        <TextField
+        {isAdmin ? (<TextField
           required
           id="outlined-required"
           label="Username"
           name='username'
 
-        />
+        />) : (<TextField
+          required
+          id="outlined-required"
+          label="Email"
+          name='email'
+
+        />)}
+
         <FormControl sx={{ m: 2, width: '20rem' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
@@ -99,12 +120,15 @@ const Login = () => {
         <Button variant="outlined" color="success" style={{ marginLeft: "1rem" }} type="submit" onClick={handleSubmit}>
           Login
         </Button>
-        <FormGroup>
-  <FormControlLabel control={<Checkbox defaultChecked />} label="Are you an admin?" />
-  </FormGroup>
-        <p>
+        <FormGroup style={{marginLeft:"1rem"}}>
+          <FormControlLabel
+            control={<Checkbox defaultChecked={isAdmin} onChange={() => setIsAdmin(!isAdmin)} />}
+            label="Are you an admin?"
+          />
+        </FormGroup>
+        {/* <p>
           Create a new account <Link to="/signup">Signup</Link>
-        </p>
+        </p> */}
       </Box>
     </div>
   );

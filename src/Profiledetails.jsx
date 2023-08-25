@@ -32,6 +32,16 @@ const Profiledetails = () => {
       // console.log(response.data)
       if (response.status === 200) {
         alert("profile saved successfully")
+        inputRef.current.fullname.value = '';
+        inputRef.current.email.value = '';
+        inputRef.current.phonenumber.value = '';
+        inputRef.current.fulladdress.value = '';
+        inputRef.current.pincode.value = '';
+        inputRef.current.bloodgroup.value = '';
+        inputRef.current.educationqualification.value = '';
+        inputRef.current.guardianname.value = '';
+        inputRef.current.relation.value = '';
+        inputRef.current.guardianphoneNumber.value = '';
       } else {
         console.log("Something went wrong");
       }

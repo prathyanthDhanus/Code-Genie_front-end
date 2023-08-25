@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <div style={containerStyle}>
         <p style={textStyle}>
-          &copy; {new Date().getFullYear()} Your Project Name. All rights reserved.
+          &copy; {new Date().getFullYear()} CodeGenie. All rights reserved.
         </p>
       </div>
     </footer>
