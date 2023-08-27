@@ -49,21 +49,22 @@ const Login = () => {
     try {
       // const response = await axios.post('http://localhost:3000/admin/login', { username:userName, email:eMail, password:passWord });
       const url = isAdmin ? "http://localhost:3000/admin/login" : "http://localhost:3000/student/login";
-      const response = await axios.post(url, { username: userName, email: eMail, password: passWord });
-      
+      const response = await axios.post(url, { username: userName, eMail: eMail, passWord: passWord });
+
       if (response.data.status === "success") {
+        console.log(response.data.status)
         alert('Login success!!!!!!!!')
-        if(isAdmin){
-          navigate("/studentdetails")
-        }else{
+        if (isAdmin) {
+          return navigate("/studentdetails")
+        } else {
           navigate("/")
         }
-        
+
       } else {
-        console.log("username passsword missmatch")
+        alert("username passsword missmatch")
       }
     } catch (error) {
-      alert("Username or password mismatch");
+      console.log("Error found:", error);
     }
 
   }
@@ -120,7 +121,7 @@ const Login = () => {
         <Button variant="outlined" color="success" style={{ marginLeft: "1rem" }} type="submit" onClick={handleSubmit}>
           Login
         </Button>
-        <FormGroup style={{marginLeft:"1rem"}}>
+        <FormGroup style={{ marginLeft: "1rem" }}>
           <FormControlLabel
             control={<Checkbox defaultChecked={isAdmin} onChange={() => setIsAdmin(!isAdmin)} />}
             label="Are you an admin?"

@@ -69,14 +69,7 @@ const Studentdetails = () => {
         </List>
       </Collapse>
     </List>
- 
 
-    
-  <p>
-    Create a student 
-  </p>
-
-    <h5>ggjgug</h5>
 
 
     </div>
