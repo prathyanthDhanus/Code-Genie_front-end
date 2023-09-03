@@ -35,13 +35,13 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let userName;
-    let eMail;
+    // let userName;
+    // let eMail;
 
     if (isAdmin) {
-      userName = inputRef.current.username.value;
+    var  userName = inputRef.current.username.value;
     } else {
-      eMail = inputRef.current.email.value;
+     var eMail = inputRef.current.email.value;
     }
     const passWord = inputRef.current.password.value;
     // console.log(userName,passWord,eMail)
@@ -49,7 +49,7 @@ const Login = () => {
     try {
       // const response = await axios.post('http://localhost:3000/admin/login', { username:userName, email:eMail, password:passWord });
       const url = isAdmin ? "http://localhost:3000/admin/login" : "http://localhost:3000/student/login";
-      const response = await axios.post(url, { username: userName, eMail: eMail, passWord: passWord });
+      const response = await axios.post(url, { userName: userName, eMail: eMail, passWord: passWord });
 
       if (response.data.status === "success") {
         console.log(response.data.status)

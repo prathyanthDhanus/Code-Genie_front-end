@@ -1,17 +1,27 @@
 import { createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    users:[]
+    students:[],
+    loading: true,
+  error: null,
 }
 
-const userSlice = createSlice({
-    name: "user",
+const studentSlice = createSlice({
+    name: "student",
     initialState,
     reducers:{
-        addUser:(state,action)=>{
-            state.users.push(action.payload)
-            // console.log(JSON.stringify(state.users));
-        }
+        setStudents: (state, action) => {
+            state.students = action.payload;
+            state.loading = false;
+            state.error = null;
+          },
+          setLoading: (state, action) => {
+            state.loading = action.payload;
+          },
+          setError: (state, action) => {
+            state.error = action.payload;
+            state.loading = false;
+          },
        
 
     }
@@ -19,5 +29,5 @@ const userSlice = createSlice({
 
 
 
-export const {addUser} = userSlice.actions
-export default userSlice.reducer
+export const {setStudents,setError,setLoading} = studentSlice.actions
+export default studentSlice.reducer

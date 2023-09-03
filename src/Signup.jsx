@@ -4,10 +4,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-// import { Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { addUser } from './Redux/Slices/Reduuser';
 import "./Bootstrap/Style.css";
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -23,8 +19,7 @@ import axios from 'axios';
 const Signup = () => {
 
     const inputRef = useRef(null)
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleSubmit = async () => {
@@ -66,9 +61,6 @@ const Signup = () => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
-
-
 
 
     return (
