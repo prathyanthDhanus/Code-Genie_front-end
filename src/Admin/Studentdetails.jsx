@@ -23,33 +23,6 @@ import { useDispatch } from 'react-redux';
 
 
 
-
-
-
-
-
-
-
-// function createData(name) {
-//   return {
-//     name,
-//     history: [
-//       {
-//         date: '2020-01-05',
-//         customerId: '11091700',
-//         amount: 3,
-//       },
-//       {
-//         date: '2020-01-02',
-//         customerId: 'Anonymous',
-//         amount: 1,
-//       },
-//     ],
-//   };
-// }
-
-
-
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
@@ -67,7 +40,8 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-  <Typography variant="body1">Index</Typography>
+  <Typography variant="body1"></Typography>
+
 </TableCell>
 
         <TableCell >{row._id}</TableCell>
@@ -114,34 +88,6 @@ function Row(props) {
     </React.Fragment>
   );
 }
-// Row.propTypes = {
-//   row: PropTypes.shape({
-//     calories: PropTypes.number.isRequired,
-//     carbs: PropTypes.number.isRequired,
-//     fat: PropTypes.number.isRequired,
-//     history: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         amount: PropTypes.number.isRequired,
-//         customerId: PropTypes.string.isRequired,
-//         date: PropTypes.string.isRequired,
-//       }),
-//     ).isRequired,
-//     name: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//     protein: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
-
-
-// const rows = [
-//   createData('Frozen yoghurt', 159, 6.0 ),
-//   // createData('Ice cream sandwich', 237, 9.0 ),
-//   // createData('Eclair', 262, 16.0),
-//   // createData('Cupcake', 305, 3.7),
-//   // createData('Gingerbread', 356, 16.0),
-// ];
-
-
 
 const Studentdetails = () => {
  
@@ -189,9 +135,6 @@ const Studentdetails = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))} */}
           {student.map((student) => (
               <Row key={student.name} row={student} />
             ))}
