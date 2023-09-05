@@ -15,10 +15,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
 
-
 import { Outlet } from 'react-router-dom'
-
-
 
 const Sidebar = () => {
   const [open, setOpen] = React.useState(true);
@@ -27,10 +24,10 @@ const Sidebar = () => {
     setOpen(!open);
   };
   return (
-    <div>
-    <h2>ADMIN PAGE</h2>
-    <div >
+    <div className='d-flex'style={{position:"relative",top:'2rem',marginLeft:"2rem" }}>
+    <div style={{width:"20%"}}>
    
+   <h2>ADMIN PAGE</h2>
      <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
       component="nav"
@@ -85,7 +82,7 @@ const Sidebar = () => {
     </List>
 
 
-    
+
     </div>
    
     <Outlet />

@@ -64,7 +64,7 @@ const Signup = () => {
 
 
     return (
-        <div className='login_signup'>
+        <div style={{marginLeft:"18rem"}}>
 
 
             <Box

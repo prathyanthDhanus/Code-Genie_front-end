@@ -19,13 +19,14 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
           <Route path='/profiledetails' element={<Profiledetails />} />
 
-          {/* <Route element={<Sidebar />}> */}
-            <Route path='/sidebar' element={<Sidebar />} />
+          <Route path='/sidebar' element={<Sidebar />} />
+
+          <Route element={<Sidebar />}>
+          <Route path='/signup' element={<Signup />} />
             <Route path='/studentdetails' element={<Studentdetails />} />
-          {/* </Route> */}
+          </Route>
 
 
         </Routes>
