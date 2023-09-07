@@ -21,24 +21,28 @@ import { useDispatch } from 'react-redux';
 
 const Studentdetails = () => {
  
-  const student = useSelector((state)=>state.student.students)
-  // console.log(student)
+  const student = useSelector((state)=>state.student.students);
+    console.log(student);
   const loading = useSelector((state) => state.student.loading);
   const error = useSelector((state) => state.student.error);
   const dispatch = useDispatch();
+  
  
   useEffect(()=>{
-    axios.get('http://localhost:3000/admin/student')
+    const fetchData = async () =>{
 
-    .then((response)=>{
-      dispatch(setStudents(response.data.data));
-      dispatch(setLoading(false));
-
-    })
-    .catch((error)=>{
-      dispatch(setError(error));
-      dispatch(setLoading(false))
-    })
+      try{
+        const response = await axios.get('http://localhost:3000/admin/student')
+        dispatch(setStudents(response.data.data));
+        dispatch(setLoading(false));
+  
+      }  catch(error){
+        dispatch(setError(error));
+        dispatch(setLoading(false))
+      }
+    };
+    fetchData()
+  
   },[dispatch])
 
   
@@ -53,6 +57,7 @@ const Studentdetails = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
+          
             <TableCell>Index</TableCell>
             <TableCell>User ID</TableCell>
             <TableCell >User Name</TableCell>

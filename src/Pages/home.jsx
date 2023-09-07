@@ -1,6 +1,7 @@
-import CustomCard from "./Bootstrap/Card"
-import Carousels from "./Bootstrap/Carousels"
-import "../src/Bootstrap/Style.css"
+import CustomCard from "../Components/card"
+import Carousels from "../Components/carousels"
+import "../Components/Style.css"
+
 
 const Home = () => {
   return (

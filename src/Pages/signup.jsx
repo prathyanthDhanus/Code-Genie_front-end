@@ -4,7 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import "./Bootstrap/Style.css";
+import "../Components/Style.css";
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -29,7 +29,7 @@ const Signup = () => {
         const eMail = inputRef.current.email.value;
         const batch_Number = inputRef.current.batch_number.value;
 
-        console.log(userName, passWord, batch_Number, eMail)
+        // console.log(userName, passWord, batch_Number, eMail)
         try {
             const response = await axios.post('http://localhost:3000/admin/student/register', {
                 userName: userName,
@@ -37,9 +37,9 @@ const Signup = () => {
                 eMail: eMail,
                 passWord: passWord
             })
-            //  console.log(response.status)
+             console.log(response.status)
             if (response.status === 201) {
-                alert("Registered successfully")
+                alert(response.data.message)
                 inputRef.current.username.value = "";
                 inputRef.current.password.value = "";
                 inputRef.current.email.value = "";
@@ -47,13 +47,13 @@ const Signup = () => {
 
 
             } else {
-                alert("Student is already exist");
+                alert(response.data.message);
             }
         } catch (error) {
             console.log("Error found:", error)
+            
         }
-        // dispatch(addUser({ username: userName, password: passWord }))
-        // navigate("/login")
+      
     }
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);

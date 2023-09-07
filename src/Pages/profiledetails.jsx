@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { useRef } from 'react';
 import Button from '@mui/material/Button';
-import "./Bootstrap/Style.css";
+import "../Components/Style.css";
 import axios from 'axios';
 
 const Profiledetails = () => {

@@ -1,12 +1,16 @@
-import Home from './Home'
-import Login from './Login'
+import Home from './Pages/home'
+import Login from './Pages/login'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Signup from './Signup'
-import Header from './Bootstrap/Header'
-import Footer from './Bootstrap/Footer'
-import Profiledetails from './Profiledetails'
-import Studentdetails from './Admin/Studentdetails'
-import Sidebar from './Admin/Sidebar'
+import Signup from './Pages/signup'
+import Header from './Components/header'
+import Footer from './Components/footer'
+import Profiledetails from './Pages/profiledetails'
+import Studentdetails from './Admin/studentdetails'
+import Sidebar from './Admin/sidebar'
+import SingleStudentDetails from './Admin/singleStudentDetails'
+
+
+
 
 function App() {
 
@@ -26,6 +30,7 @@ function App() {
           <Route element={<Sidebar />}>
           <Route path='/signup' element={<Signup />} />
             <Route path='/studentdetails' element={<Studentdetails />} />
+            <Route path='/singlestudentdetails' element={<SingleStudentDetails/>}/>
           </Route>
 
 

@@ -52,8 +52,8 @@ const Login = () => {
       const response = await axios.post(url, { userName: userName, eMail: eMail, passWord: passWord });
 
       if (response.data.status === "success") {
-        console.log(response.data.status)
-        alert('Login success!!!!!!!!')
+        // console.log(response.data.status)
+        alert(response.data.message)
         if (isAdmin) {
           return navigate("/studentdetails")
         } else {
@@ -61,7 +61,7 @@ const Login = () => {
         }
 
       } else {
-        alert("username passsword missmatch")
+        alert(response.data.message)
       }
     } catch (error) {
       console.log("Error found:", error);

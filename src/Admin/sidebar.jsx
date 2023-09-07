@@ -14,11 +14,15 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
+import { useNavigate } from "react-router-dom";
+
+
 
 import { Outlet } from 'react-router-dom'
 
 const Sidebar = () => {
   const [open, setOpen] = React.useState(true);
+const navigate = useNavigate()
 
   const handleClick = () => {
     setOpen(!open);
@@ -34,7 +38,7 @@ const Sidebar = () => {
       aria-labelledby="nested-list-subheader"
       subheader={
         <ListSubheader component="div" id="nested-list-subheader">
-          Nested List Items
+         Admin Controls
         </ListSubheader>
       }
     >
@@ -56,12 +60,15 @@ const Sidebar = () => {
       </ListItemButton>
       </Link>
 
-      <ListItemButton>
+      <Link to="/singlestudentdetails">
+      <ListItemButton >
         <ListItemIcon>
           <PersonOutlineIcon />
         </ListItemIcon>
         <ListItemText primary="View details of a student" />
       </ListItemButton>
+</Link>
+
       <ListItemButton onClick={handleClick}>
         <ListItemIcon>
           <InboxIcon />
