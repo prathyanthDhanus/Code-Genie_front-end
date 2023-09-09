@@ -47,7 +47,7 @@ const Login = () => {
     // console.log(userName,passWord,eMail)
 
     try {
-      // const response = await axios.post('http://localhost:3000/admin/login', { username:userName, email:eMail, password:passWord });
+     
       const url = isAdmin ? "http://localhost:3000/admin/login" : "http://localhost:3000/student/login";
       const response = await axios.post(url, { userName: userName, eMail: eMail, passWord: passWord });
 

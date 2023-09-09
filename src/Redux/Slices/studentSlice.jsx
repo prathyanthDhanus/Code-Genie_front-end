@@ -33,16 +33,3 @@ const studentSlice = createSlice({
 export const {setStudents,setError,setLoading} = studentSlice.actions
 export default studentSlice.reducer
 
-// export const fetchData = async (dispatch)=>{
-  
-//    try{
-    
-//     const response = await axios.get('http://localhost:3000/admin/student');
-//     dispatch(setStudents(response.data.data));
-//     dispatch(setLoading(false));
-
-//    }catch(error){
-//     dispatch(setError(error));
-//     dispatch(setLoading(false))
-//    }
-// }
