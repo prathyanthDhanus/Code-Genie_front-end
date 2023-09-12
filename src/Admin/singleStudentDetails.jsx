@@ -45,11 +45,11 @@ const SingleStudentDetails = () => {
 
   return (
 
-    <div style={{ width: "80%" }} >
+    <div style={{ width: "80%",marginLeft:'5rem' , marginRight:"5rem"}} >
       <h3> Details of a Student </h3>
 
       <List
-        sx={{ width: '100%', bgcolor: 'background.paper' }}
+        sx={{ width: '100%', bgcolor: 'background.paper',border: '.5rem solid yellow', borderRadius: '2rem',  }}
         component="nav"
         aria-labelledby="nested-list-subheader"
         subheader={
@@ -108,7 +108,7 @@ const SingleStudentDetails = () => {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
 
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton sx={{ pl: 4, py: 2 }}>
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
@@ -118,18 +118,18 @@ const SingleStudentDetails = () => {
                 )}
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton sx={{ pl: 4, py: 2 }}>
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
-            <span style={{ marginRight: '1rem' }}><u>Email</u></span>
+                <span style={{ marginRight: '1rem' }}><u>Email</u></span>
 
                 {studentData.profile && studentData.profile.length > 0 && (
                   <ListItemText primary={studentData.profile[0].eMail} />
                 )}
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton sx={{ pl: 4, py: 2 }}>
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
@@ -139,7 +139,7 @@ const SingleStudentDetails = () => {
                 )}
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton sx={{ pl: 4, py: 2 }}>
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
@@ -149,7 +149,7 @@ const SingleStudentDetails = () => {
                 )}
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton sx={{ pl: 4, py: 2 }}>
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
@@ -159,7 +159,7 @@ const SingleStudentDetails = () => {
                 )}
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton sx={{ pl: 4, py: 2 }}>
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
@@ -169,7 +169,7 @@ const SingleStudentDetails = () => {
                 )}
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton sx={{ pl: 4, py: 2 }}>
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
@@ -179,11 +179,11 @@ const SingleStudentDetails = () => {
                 )}
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton sx={{ pl: 4, py: 2 }}>
                 <ListItemIcon>
                   <StarBorder />
-                  <span style={{ marginRight: '1rem' }}><u>GuardianName</u></span>
                 </ListItemIcon>
+                <span style={{ marginRight: '1rem' }}><u>GuardianName</u></span>
                 {studentData.profile && studentData.profile.length > 0 && (
                   <ListItemText primary={studentData.profile[0].guardianName} />
                 )}
@@ -192,19 +192,18 @@ const SingleStudentDetails = () => {
               <ListItemButton sx={{ pl: 4 }}>
                 <ListItemIcon>
                   <StarBorder />
-                  <span style={{ marginRight: '1rem' }}><u>Relation with the Guardian</u></span>
                 </ListItemIcon>
+                <span style={{ marginRight: '1rem' }}><u>Relation with the Guardian</u></span>
                 {studentData.profile && studentData.profile.length > 0 && (
                   <ListItemText primary={studentData.profile[0].guardianRelation} />
                 )}
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton sx={{ pl: 4, py: 2 }}>
                 <ListItemIcon>
                   <StarBorder />
-                  <span style={{ marginRight: '1rem' }}><u>GuardianPhoneNumber</u></span>
                 </ListItemIcon>
-               
+                <span style={{ marginRight: '1rem' }}><u>GuardianPhoneNumber</u></span>
                 {studentData.profile && studentData.profile.length > 0 && (
                   <ListItemText primary={studentData.profile[0].guardianPhoneNumber} />
                 )}
@@ -221,4 +220,3 @@ const SingleStudentDetails = () => {
 }
 
 export default SingleStudentDetails
-
