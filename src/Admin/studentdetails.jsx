@@ -33,7 +33,7 @@ const Studentdetails = () => {
 
   const dispatch = useDispatch();
   const inputRef = useRef();
-  const [serachedData, setSearchedData] = useState([])
+  const [searchedData, setSearchedData] = useState([])
 
   //----------------------------------------------------------------
 
@@ -41,8 +41,8 @@ const Studentdetails = () => {
 
   const handleSubmit = () => {
     const search = inputRef.current.value.trim().toLowerCase()
-    const serachedData = student.filter((item) => item.eMail.toLowerCase().includes(search))
-    setSearchedData(serachedData)
+    const searchedData = student.filter((item) => item.eMail.toLowerCase().includes(search))
+    setSearchedData(searchedData)
   }
   //-----------------------------------------------------------------
 
@@ -102,7 +102,7 @@ const Studentdetails = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {(serachedData.length > 0 ? serachedData : student).map((data, e) => (
+              {(searchedData.length > 0 ? searchedData : student).map((data, e) => (
                 <TableRow
                   key={data._id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

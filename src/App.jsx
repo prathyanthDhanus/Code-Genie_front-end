@@ -8,6 +8,7 @@ import Profiledetails from './Pages/profiledetails'
 import Studentdetails from './Admin/studentdetails'
 import Sidebar from './Admin/sidebar'
 import SingleStudentDetails from './Admin/singleStudentDetails'
+import Edit from './Pages/edit'
 
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route path='/signup' element={<Signup />} />
             <Route path='/studentdetails' element={<Studentdetails />} />
             <Route path='/singlestudentdetails' element={<SingleStudentDetails/>}/>
+            <Route path='/edit' element={<Edit/>}/>
           </Route>
 
 

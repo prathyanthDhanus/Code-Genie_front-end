@@ -147,10 +147,10 @@ const Sidebar = () => {
                   </ListItemButton>
                 </Link>
               </ListItemButton>
-
             </List>
           </Collapse>
         </List>
+
         <List
           sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop:"1rem"}}
           component="nav"
@@ -200,11 +200,117 @@ const Sidebar = () => {
                   </ListItemButton>
                 </Link>
               </ListItemButton>
-
             </List>
           </Collapse>
         </List>
 
+
+        <List
+          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop:"1rem"}}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+         
+        >
+
+          <ListItemButton onClick={()=>handleClick('topicSection')}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="QUIZ SECTION" />
+            {openStates.topicSection ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={openStates.topicSection}timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 2 }}>
+
+                <Link to="/signup">
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <PersonAddAltIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Register a student" />
+                  </ListItemButton>
+                </Link>
+              </ListItemButton>
+
+              <ListItemButton sx={{ pl: 2 }}>
+                <Link to="/studentDetails">
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <PersonAddAltIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="View full student details" />
+                  </ListItemButton>
+                </Link>
+              </ListItemButton>
+
+              <ListItemButton sx={{ pl: 2 }}>
+                <Link to="/singlestudentdetails">
+                  <ListItemButton >
+                    <ListItemIcon>
+                      <PersonOutlineIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="View details of a student" />
+                  </ListItemButton>
+                </Link>
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </List>
+
+
+        <List
+          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop:"1rem"}}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+         
+        >
+
+          <ListItemButton onClick={()=>handleClick('topicSection')}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="ATTENDANCE SECTION" />
+            {openStates.topicSection ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={openStates.topicSection}timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 2 }}>
+
+                <Link to="/signup">
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <PersonAddAltIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Register a student" />
+                  </ListItemButton>
+                </Link>
+              </ListItemButton>
+
+              <ListItemButton sx={{ pl: 2 }}>
+                <Link to="/studentDetails">
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <PersonAddAltIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="View full student details" />
+                  </ListItemButton>
+                </Link>
+              </ListItemButton>
+
+              <ListItemButton sx={{ pl: 2 }}>
+                <Link to="/singlestudentdetails">
+                  <ListItemButton >
+                    <ListItemIcon>
+                      <PersonOutlineIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="View details of a student" />
+                  </ListItemButton>
+                </Link>
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </List>
 
 
 

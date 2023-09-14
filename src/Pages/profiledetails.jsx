@@ -31,7 +31,7 @@ const Profiledetails = () => {
       const response = await axios.post('http://localhost:3000/student/profile', profileData)
       // console.log(response.data)
       if (response.status === 200) {
-        alert("profile saved successfully")
+        alert(response.data.message)
         inputRef.current.fullname.value = '';
         inputRef.current.email.value = '';
         inputRef.current.phonenumber.value = '';
@@ -43,7 +43,7 @@ const Profiledetails = () => {
         inputRef.current.relation.value = '';
         inputRef.current.guardianphoneNumber.value = '';
       } else {
-        console.log("Something went wrong");
+        alert(response.data.message);
       }
     } catch (error) {
       console.log("Error found :", error)

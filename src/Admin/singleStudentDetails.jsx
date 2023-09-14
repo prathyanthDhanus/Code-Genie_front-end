@@ -1,5 +1,5 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
+import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Form from 'react-bootstrap/Form';
 import { useRef } from 'react';
@@ -18,45 +18,89 @@ import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from 'react-router-dom';
+import "../Components/Style.css";
+
+
+
 
 
 const SingleStudentDetails = () => {
+
   const inputRef = useRef();
   const [studentData, setStudentData] = useState([])
+  const [searchedId,setSearchedId] = useState()
   const [open, setOpen] = React.useState(false);
+  const [isEdit, setIsEdit] = useState(false)
+  const navigate = useNavigate();
+
+  //--------------------------------Searching for a student by ID-----------------------
 
   const handleSearch = async () => {
     const id = inputRef.current.value;
+    setSearchedId(id)
     try {
       const response = await axios.get(`http://localhost:3000/admin/student/${id}`);
       const data = response.data.data;
       setStudentData(data)
       // console.log(data);
-      console.log(studentData.userName)
+      // console.log(studentData.userName)
     } catch (error) {
       console.log("Error", error)
     }
   }
+  //------------------------------------------------------------------------------------
 
   const handleClick = () => {
     setOpen(!open);
   };
 
+  const handleEdit = () => {
+    setIsEdit(!isEdit)
+  }
+  //-------------------------------handle submit in edit section--------------------------
 
+  const handleSubmit = async () => {
+    const userName = inputRef.current.newUserName.value;
+    const eMail = inputRef.current.newEmail.value;
+    const batch_Number = inputRef.current.newBatchNumber.value;
+     const id = searchedId;
+
+    try{
+      const response = await axios.put(`http://localhost:3000/admin/student/${id}`,{
+       userName: userName,
+       eMail:eMail,
+       batch_Number:batch_Number
+      })
+
+      if(response.status===200){
+        alert(response.data.message)
+        window.location.reload();
+      }else{
+        alert(response.data.message)
+      }
+
+    }catch(error){
+      console.log("Error",error)
+    }
+  }
+
+  //--------------------------------------delete section----------------------------------------
+
+          
+ 
   return (
 
-    <div style={{ width: "80%",marginLeft:'5rem' , marginRight:"5rem"}} >
+    <div style={{ width: "80%", marginLeft: '5rem', marginRight: "5rem" }} >
       <h3> Details of a Student </h3>
 
       <List
-        sx={{ width: '100%', bgcolor: 'background.paper',border: '.5rem solid yellow', borderRadius: '2rem',  }}
+        sx={{ width: '100%', bgcolor: 'background.paper', border: '.5rem solid yellow', borderRadius: '2rem', }}
         component="nav"
         aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-            Nested List Items
-          </ListSubheader>
-        }
+
       >
         <div className='d-flex' style={{ alignItems: 'center', justifyContent: 'center' }}>
           <Form className="d-flex">
@@ -70,147 +114,290 @@ const SingleStudentDetails = () => {
           </Form>
           {/* <button onClick={handleSearch}>search</button> */}
           <Button variant="outline-success" onClick={handleSearch}>Search</Button>
-
+          <a onClick={handleEdit}> <EditIcon /></a>
+          <DeleteIcon />
         </div>
 
-        <div >
-          <ListItemButton>
-            <ListItemIcon>
-              <SendIcon />
-            </ListItemIcon>
-            <span style={{ marginRight: '1rem' }}><b>Username</b></span>
-            <ListItemText primary={studentData.userName} />
-          </ListItemButton>
+        <div style={{ marginTop: "2rem" }}>
 
-          <ListItemButton>
-            <ListItemIcon>
-              <SendIcon />
-            </ListItemIcon>
-            <span style={{ marginRight: '1rem' }}><b>Batch_Number</b></span>
-            <ListItemText primary={studentData.batch_Number} />
-          </ListItemButton>
+          {!isEdit && (
+            <>
 
-          <ListItemButton>
-            <ListItemIcon>
-              <SendIcon />
-            </ListItemIcon>
-            <span style={{ marginRight: '1rem' }}><b>Email</b></span>
-            <ListItemText primary={studentData.eMail} />
-          </ListItemButton>
-
-          <ListItemButton onClick={handleClick}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Profile" />
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-
-              <ListItemButton sx={{ pl: 4, py: 2 }}>
+              <ListItemButton>
                 <ListItemIcon>
-                  <StarBorder />
+                  <SendIcon />
                 </ListItemIcon>
-                <span style={{ marginRight: '1rem' }}><u>Full_Name</u></span>
-                {studentData.profile && studentData.profile.length > 0 && (
-                  <ListItemText primary={studentData.profile[0].fullName} />
-                )}
+                <span style={{ marginRight: '3rem' }}><b>Username</b></span>
+                {/* <ListItemText primary={studentData.userName} /> */}
+                <TextField
+                  required
+                  id="outlined-required"
+                  name="fullname"
+                  value={studentData.userName}
+                />
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4, py: 2 }}>
+              <ListItemButton>
                 <ListItemIcon>
-                  <StarBorder />
+                  <SendIcon />
                 </ListItemIcon>
-                <span style={{ marginRight: '1rem' }}><u>Email</u></span>
-
-                {studentData.profile && studentData.profile.length > 0 && (
-                  <ListItemText primary={studentData.profile[0].eMail} />
-                )}
+                <span style={{ marginRight: '1rem' }}><b>Batch_Number</b></span>
+                {/* <ListItemText primary={studentData.batch_Number} /> */}
+                <TextField
+                  required
+                  id="outlined-required"
+                  name="batchNumber"
+                  value={studentData.batch_Number}
+                />
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4, py: 2 }}>
+              <ListItemButton>
                 <ListItemIcon>
-                  <StarBorder />
+                  <SendIcon />
                 </ListItemIcon>
-                <span style={{ marginRight: '1rem' }}><u>PhoneNumber</u></span>
-                {studentData.profile && studentData.profile.length > 0 && (
-                  <ListItemText primary={studentData.profile[0].phoneNumber} />
-                )}
+                <span style={{ marginRight: '5.7rem' }}><b>Email</b></span>
+                {/* <ListItemText primary={studentData.eMail} /> */}
+                <TextField
+                  required
+                  id="outlined-required"
+                  name="email"
+                  value={studentData.eMail}
+                />
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4, py: 2 }}>
+
+
+              <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                  <StarBorder />
+                  <InboxIcon />
                 </ListItemIcon>
-                <span style={{ marginRight: '1rem' }}><u>Full_Address</u></span>
-                {studentData.profile && studentData.profile.length > 0 && (
-                  <ListItemText primary={studentData.profile[0].fullAddress} />
-                )}
+                <ListItemText primary="Profile" />
+                {open ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4, py: 2 }}>
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <span style={{ marginRight: '1rem' }}><u>Pincode</u></span>
-                {studentData.profile && studentData.profile.length > 0 && (
-                  <ListItemText primary={studentData.profile[0].pinCode} />
-                )}
-              </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4, py: 2 }}>
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <span style={{ marginRight: '1rem' }}><u>Blood_Group</u></span>
-                {studentData.profile && studentData.profile.length > 0 && (
-                  <ListItemText primary={studentData.profile[0].bloodGroup} />
-                )}
-              </ListItemButton>
+              <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
 
-              <ListItemButton sx={{ pl: 4, py: 2 }}>
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <span style={{ marginRight: '1rem' }}><u>Education Qualification</u></span>
-                {studentData.profile && studentData.profile.length > 0 && (
-                  <ListItemText primary={studentData.profile[0].educationQualification} />
-                )}
-              </ListItemButton>
 
-              <ListItemButton sx={{ pl: 4, py: 2 }}>
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <span style={{ marginRight: '1rem' }}><u>GuardianName</u></span>
-                {studentData.profile && studentData.profile.length > 0 && (
-                  <ListItemText primary={studentData.profile[0].guardianName} />
-                )}
-              </ListItemButton>
+                  {/* <div style={{marginTop:"3rem"}}> */}
+                  <Box style={{ marginTop: "3rem" }}>
 
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <span style={{ marginRight: '1rem' }}><u>Relation with the Guardian</u></span>
-                {studentData.profile && studentData.profile.length > 0 && (
-                  <ListItemText primary={studentData.profile[0].guardianRelation} />
-                )}
-              </ListItemButton>
+                    <div style={{ display: 'flex', flexDirection: 'row', marginLeft: "10rem", gap: '2rem', marginBottom: "3rem" }}>
 
-              <ListItemButton sx={{ pl: 4, py: 2 }}>
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <span style={{ marginRight: '1rem' }}><u>GuardianPhoneNumber</u></span>
-                {studentData.profile && studentData.profile.length > 0 && (
-                  <ListItemText primary={studentData.profile[0].guardianPhoneNumber} />
-                )}
-              </ListItemButton>
+                      {studentData.profile && studentData.profile.length > 0 && (
+                        <TextField
+                          required
+                          id="outlined-required"
+                          label="Full Name"
+                          name="fullname"
+                          defaultValue={studentData.profile[0].fullName}
+                        />
+                      )}
 
-            </List>
-          </Collapse>
+                      {studentData.profile && studentData.profile.length > 0 && (
+                        <TextField
+                          required
+                          id="outlined-required"
+                          label="E-mail"
+                          name="email"
+                          defaultValue={studentData.profile[0].eMail}
+                        />
+                      )}
+
+                      {studentData.profile && studentData.profile.length > 0 && (
+                        <TextField
+                          required
+                          id="outlined-required"
+                          label="Phone Number"
+                          name="phonenumber"
+                          defaultValue={studentData.profile[0].phoneNumber}
+                        />
+                      )}
+
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'row', marginLeft: "10rem", gap: '2rem', marginBottom: "3rem" }}>
+
+                      {studentData.profile && studentData.profile.length > 0 && (
+                        <TextField
+                          required
+                          id="outlined-required"
+                          label="Pincode"
+                          name="pincode"
+                          defaultValue={studentData.profile[0].pinCode}
+                        />
+                      )}
+
+                      {studentData.profile && studentData.profile.length > 0 && (
+                        <TextField
+                          id="outlined-multiline-static"
+                          label="Full Address"
+                          name="fulladdress"
+                          defaultValue={studentData.profile[0].fullAddress}
+                          multiline
+                          rows={4}
+                          style={{ marginLeft: '.4rem' }}
+                        />
+                      )}
+
+                      {studentData.profile && studentData.profile.length > 0 && (
+                        <TextField
+                          required
+                          id="outlined-required"
+                          label="Education Qualification"
+                          name="educationqualification"
+                          defaultValue={studentData.profile[0].educationQualification}
+                        />
+                      )}
+
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'row', marginLeft: "10rem", gap: '2rem', marginBottom: "3rem" }}>
+
+                      {studentData.profile && studentData.profile.length > 0 && (
+                        <TextField
+                          required
+                          id="outlined-required"
+                          label="Guardian Name"
+                          name="guardianname"
+                          defaultValue={studentData.profile[0].guardianName}
+                        />
+                      )}
+
+                      {studentData.profile && studentData.profile.length > 0 && (
+                        <TextField
+                          required
+                          id="outlined-required"
+                          label="Relation with the guardian"
+                          name="relation"
+                          defaultValue={studentData.profile[0].guardianRelation}
+                        />
+                      )}
+
+                      {studentData.profile && studentData.profile.length > 0 && (
+                        <TextField
+                          required
+                          id="outlined-required"
+                          label="Guardian Phone Number"
+                          name="guardianphoneNumber"
+                          defaultValue={studentData.profile[0].guardianPhoneNumber}
+                        />
+                      )}
+
+                    </div>
+                  </Box>
+                  {/* </div> */}
+
+                </List>
+
+              </Collapse>
+            </>
+          )}
+
+          {/*-----------------------------------edit section---------------------------------*/}
+
+          {isEdit && (
+
+            <>
+              <Box
+                component="form"
+                ref={inputRef}
+                noValidate
+                autoComplete="off"
+              >
+
+                <ListItemButton>
+                  <ListItemIcon>
+                    <SendIcon />
+                  </ListItemIcon>
+                  <span style={{ marginRight: '3rem' }}><b>Username</b></span>
+                  {/* <ListItemText primary={studentData.userName} /> */}
+                  <TextField
+                    required
+                    id="outlined-required"
+                    name="fullname"
+                    value={studentData.userName}
+                  />
+                </ListItemButton>
+
+                <ListItemButton>
+                  <ListItemIcon>
+                    <SendIcon />
+                  </ListItemIcon>
+                  <span style={{ marginRight: '1rem' }}><b>Batch_Number</b></span>
+                  {/* <ListItemText primary={studentData.batch_Number} /> */}
+                  <TextField
+                    required
+                    id="outlined-required"
+                    name="batchNumber"
+                    value={studentData.batch_Number}
+                  />
+                </ListItemButton>
+
+                <ListItemButton>
+                  <ListItemIcon>
+                    <SendIcon />
+                  </ListItemIcon>
+                  <span style={{ marginRight: '5.7rem' }}><b>Email</b></span>
+                  {/* <ListItemText primary={studentData.eMail} /> */}
+                  <TextField
+                    required
+                    id="outlined-required"
+                    name="email"
+                    value={studentData.eMail}
+                  />
+                </ListItemButton>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <SendIcon />
+                  </ListItemIcon>
+                  <span style={{ marginRight: '3rem' }}><b>New Username</b></span>
+                  {/* <ListItemText primary={studentData.userName} /> */}
+                  <TextField
+                    required
+                    id="outlined-required"
+                    name="newUserName"
+
+                  />
+                </ListItemButton>
+
+                <ListItemButton>
+                  <ListItemIcon>
+                    <SendIcon />
+                  </ListItemIcon>
+                  <span style={{ marginRight: '1rem' }}><b>New Batch_Number</b></span>
+                  {/* <ListItemText primary={studentData.batch_Number} /> */}
+                  <TextField
+                    required
+                    id="outlined-required"
+                    name="newBatchNumber"
+
+                  />
+                </ListItemButton>
+
+                <ListItemButton>
+                  <ListItemIcon>
+                    <SendIcon />
+                  </ListItemIcon>
+                  <span style={{ marginRight: '5.7rem' }}><b>New Email</b></span>
+                  {/* <ListItemText primary={studentData.eMail} /> */}
+                  <TextField
+                    required
+                    id="outlined-required"
+                    name="newEmail"
+
+                  />
+                </ListItemButton>
+
+
+                <Button variant="outline-success" onClick={handleSubmit}>Submit</Button>
+              </Box>
+            </>
+          )}
+
+          {/*----------------------------------------------------------------------------------------- */}
+
         </div>
 
       </List>
