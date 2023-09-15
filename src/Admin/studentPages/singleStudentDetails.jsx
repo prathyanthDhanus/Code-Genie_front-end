@@ -21,7 +21,7 @@ import StarBorder from '@mui/icons-material/StarBorder';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
-import "../Components/Style.css";
+
 
 
 
@@ -31,11 +31,10 @@ const SingleStudentDetails = () => {
 
   const inputRef = useRef();
   const [studentData, setStudentData] = useState([])
-  const [searchedId,setSearchedId] = useState()
+  const [searchedId, setSearchedId] = useState()
   const [open, setOpen] = React.useState(false);
   const [isEdit, setIsEdit] = useState(false)
-  const navigate = useNavigate();
-
+  
   //--------------------------------Searching for a student by ID-----------------------
 
   const handleSearch = async () => {
@@ -46,11 +45,12 @@ const SingleStudentDetails = () => {
       const data = response.data.data;
       setStudentData(data)
       // console.log(data);
-      // console.log(studentData.userName)
+      // console.log(studentData)
     } catch (error) {
       console.log("Error", error)
     }
   }
+
   //------------------------------------------------------------------------------------
 
   const handleClick = () => {
@@ -66,31 +66,49 @@ const SingleStudentDetails = () => {
     const userName = inputRef.current.newUserName.value;
     const eMail = inputRef.current.newEmail.value;
     const batch_Number = inputRef.current.newBatchNumber.value;
-     const id = searchedId;
+    const id = searchedId;
 
-    try{
-      const response = await axios.put(`http://localhost:3000/admin/student/${id}`,{
-       userName: userName,
-       eMail:eMail,
-       batch_Number:batch_Number
+    try {
+      const response = await axios.put(`http://localhost:3000/admin/student/${id}`, {
+        userName: userName,
+        eMail: eMail,
+        batch_Number: batch_Number
       })
 
-      if(response.status===200){
+      if (response.status === 200) {
         alert(response.data.message)
         window.location.reload();
-      }else{
+      } else {
         alert(response.data.message)
       }
 
-    }catch(error){
-      console.log("Error",error)
+    } catch (error) {
+      console.log("Error", error)
     }
   }
 
   //--------------------------------------delete section----------------------------------------
 
-          
- 
+  const handleDelete = async () => {
+    const id = searchedId;
+    const confirmDelete = window.confirm("Are you sure you want to delete?")
+    if (confirmDelete) {
+      try {
+        const response = await axios.delete(`http://localhost:3000/admin/student/${id}`)
+        if (response.status === 200) {
+          alert(response.data.message)
+          window.location.reload();
+        } else {
+          alert("something went wrong")
+        }
+      } catch (error) {
+        console.log("Error:", error)
+      }
+    }
+
+  }
+
+//-----------------------------------------------------------------------------------------------------
   return (
 
     <div style={{ width: "80%", marginLeft: '5rem', marginRight: "5rem" }} >
@@ -115,7 +133,7 @@ const SingleStudentDetails = () => {
           {/* <button onClick={handleSearch}>search</button> */}
           <Button variant="outline-success" onClick={handleSearch}>Search</Button>
           <a onClick={handleEdit}> <EditIcon /></a>
-          <DeleteIcon />
+          <a onClick={handleDelete}> <DeleteIcon /></a>
         </div>
 
         <div style={{ marginTop: "2rem" }}>
@@ -295,7 +313,7 @@ const SingleStudentDetails = () => {
             </>
           )}
 
-          {/*-----------------------------------edit section---------------------------------*/}
+          {/*-----------------------------------edit section start---------------------------------*/}
 
           {isEdit && (
 
@@ -396,7 +414,7 @@ const SingleStudentDetails = () => {
             </>
           )}
 
-          {/*----------------------------------------------------------------------------------------- */}
+          {/*---------------------------------------------- edit end -------------------------------------- */}
 
         </div>
 

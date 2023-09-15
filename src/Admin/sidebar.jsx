@@ -32,7 +32,7 @@ const Sidebar = () => {
       ...prevState,
       [section]: !prevState[section],
     }));
-    
+
   };
 
   return (
@@ -50,15 +50,16 @@ const Sidebar = () => {
             </ListSubheader>
           }
         >
+          {/*----------------------------------student section-------------------------------------*/}
 
-          <ListItemButton onClick={()=>handleClick('studentSection')}>
+          <ListItemButton onClick={() => handleClick('studentSection')}>
             <ListItemIcon>
               <SchoolIcon />
             </ListItemIcon>
             <ListItemText primary="STUDENT SECTION" />
             {openStates.studentSection ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-          <Collapse in={openStates.studentSection}  timeout="auto" unmountOnExit>
+          <Collapse in={openStates.studentSection} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 2 }}>
 
@@ -98,36 +99,38 @@ const Sidebar = () => {
           </Collapse>
         </List>
 
+        {/*---------------------------------------batch section----------------------------------------*/}
+
         <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop:"1rem"}}
+          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop: "1rem" }}
           component="nav"
           aria-labelledby="nested-list-subheader"
-         
+
         >
 
-          <ListItemButton onClick={()=>handleClick('batchSection')}>
+          <ListItemButton onClick={() => handleClick('batchSection')}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
             <ListItemText primary="BATCH SECTION" />
             {openStates.batchSection ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-          <Collapse in={openStates.batchSection}timeout="auto" unmountOnExit>
+          <Collapse in={openStates.batchSection} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 2 }}>
 
-                <Link to="/signup">
+                <Link to="/showallbatches">
                   <ListItemButton>
                     <ListItemIcon>
                       <PersonAddAltIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Register a student" />
+                    <ListItemText primary="Show All Batches" />
                   </ListItemButton>
                 </Link>
               </ListItemButton>
 
               <ListItemButton sx={{ pl: 2 }}>
-                <Link to="/studentDetails">
+                <Link to="/showallbatches">
                   <ListItemButton>
                     <ListItemIcon>
                       <PersonAddAltIcon />
@@ -150,22 +153,23 @@ const Sidebar = () => {
             </List>
           </Collapse>
         </List>
+        {/*----------------------------------topic section----------------------------------*/}
 
         <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop:"1rem"}}
+          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop: "1rem" }}
           component="nav"
           aria-labelledby="nested-list-subheader"
-         
+
         >
 
-          <ListItemButton onClick={()=>handleClick('topicSection')}>
+          <ListItemButton onClick={() => handleClick('topicSection')}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
             <ListItemText primary="TOPIC SECTION" />
             {openStates.topicSection ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-          <Collapse in={openStates.topicSection}timeout="auto" unmountOnExit>
+          <Collapse in={openStates.topicSection} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 2 }}>
 
@@ -204,22 +208,23 @@ const Sidebar = () => {
           </Collapse>
         </List>
 
+        {/*--------------------------------- quiz secion ----------------------------------*/}
 
         <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop:"1rem"}}
+          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop: "1rem" }}
           component="nav"
           aria-labelledby="nested-list-subheader"
-         
+
         >
 
-          <ListItemButton onClick={()=>handleClick('topicSection')}>
+          <ListItemButton onClick={() => handleClick('topicSection')}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
             <ListItemText primary="QUIZ SECTION" />
             {openStates.topicSection ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-          <Collapse in={openStates.topicSection}timeout="auto" unmountOnExit>
+          <Collapse in={openStates.topicSection} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 2 }}>
 
@@ -258,22 +263,23 @@ const Sidebar = () => {
           </Collapse>
         </List>
 
+        {/*--------------------------------------attendence section----------------------------------*/}
 
         <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop:"1rem"}}
+          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop: "1rem" }}
           component="nav"
           aria-labelledby="nested-list-subheader"
-         
+
         >
 
-          <ListItemButton onClick={()=>handleClick('topicSection')}>
+          <ListItemButton onClick={() => handleClick('topicSection')}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
             <ListItemText primary="ATTENDANCE SECTION" />
             {openStates.topicSection ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-          <Collapse in={openStates.topicSection}timeout="auto" unmountOnExit>
+          <Collapse in={openStates.topicSection} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 2 }}>
 

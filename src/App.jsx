@@ -5,12 +5,12 @@ import Signup from './Pages/signup'
 import Header from './Components/header'
 import Footer from './Components/footer'
 import Profiledetails from './Pages/profiledetails'
-import Studentdetails from './Admin/studentdetails'
+import Studentdetails from './Admin/studentPages/studentdetails'
 import Sidebar from './Admin/sidebar'
-import SingleStudentDetails from './Admin/singleStudentDetails'
+import SingleStudentDetails from './Admin/studentPages/singleStudentDetails'
 import Edit from './Pages/edit'
-
-
+import ShowAllBatch from './Admin/batchPages/showAllBatch'
+import One from './Admin/studentPages/one'
 
 
 function App() {
@@ -33,6 +33,9 @@ function App() {
             <Route path='/studentdetails' element={<Studentdetails />} />
             <Route path='/singlestudentdetails' element={<SingleStudentDetails/>}/>
             <Route path='/edit' element={<Edit/>}/>
+            <Route path='/showallbatches' element={<ShowAllBatch/>}/>
+            <Route path='/one/:id' element={<One/>}/>
+
           </Route>
 
 

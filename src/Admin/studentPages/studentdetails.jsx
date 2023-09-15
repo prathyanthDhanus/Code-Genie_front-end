@@ -10,13 +10,14 @@ import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { setError, setLoading, setStudents } from '../Redux/Slices/studentSlice';
+import { setError, setLoading, setStudents } from '../../Redux/Slices/studentSlice';
 import { useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useRef } from 'react';
 import { Search } from '@mui/icons-material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -33,7 +34,8 @@ const Studentdetails = () => {
 
   const dispatch = useDispatch();
   const inputRef = useRef();
-  const [searchedData, setSearchedData] = useState([])
+  const [searchedData, setSearchedData] = useState([]);
+  const navigate = useNavigate()
 
   //----------------------------------------------------------------
 
@@ -41,9 +43,10 @@ const Studentdetails = () => {
 
   const handleSubmit = () => {
     const search = inputRef.current.value.trim().toLowerCase()
-    const searchedData = student.filter((item) => item.eMail.toLowerCase().includes(search))
+    const searchedData = student.filter((item) => item.userName.toLowerCase().includes(search))
     setSearchedData(searchedData)
   }
+
   //-----------------------------------------------------------------
 
   //---------------fetching data from the server--------------------
@@ -79,7 +82,7 @@ const Studentdetails = () => {
           <Form className="d-flex">
             <Form.Control
               type="search"
-              placeholder="Search"
+              placeholder="Search username here....!"
               className="me-2"
               aria-label="Search"
               ref={inputRef}
@@ -94,7 +97,7 @@ const Studentdetails = () => {
               <TableRow>
 
                 <TableCell>Index</TableCell>
-                <TableCell>User ID</TableCell>
+                {/* <TableCell>User ID</TableCell> */}
                 <TableCell >User Name</TableCell>
                 <TableCell >Batch_Number</TableCell>
                 <TableCell >E-mail</TableCell>
@@ -110,8 +113,8 @@ const Studentdetails = () => {
                   <TableCell component="th" scope="row">
                     {e + 1}
                   </TableCell>
-                  <TableCell> {data._id}</TableCell>
-                  <TableCell >{data.userName}</TableCell>
+                  {/* <TableCell> {data._id}</TableCell> */}
+                  <TableCell onClick={()=> navigate(`/one/${data._id}`)} >{data.userName}</TableCell>
                   <TableCell >{data.batch_Number}</TableCell>
                   <TableCell >{data.eMail}</TableCell>
                 </TableRow>
