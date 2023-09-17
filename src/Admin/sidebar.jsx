@@ -37,7 +37,17 @@ const Sidebar = () => {
 
   return (
     <div className='d-flex' style={{ position: "relative", top: '2rem', marginLeft: "2rem" }}>
-      <div style={{ width: "20%" }}>
+      <div style={{ 
+         position: "fixed", // Fixed position to keep it on the left side
+        top: '1rem',
+        left: 0, // Position it on the left side
+        width: "20%", // Set the desired width
+        height: "100%", // Set the desired height
+        overflowY: "auto", // Enable vertical scrolling when the content overflows
+        marginLeft: "2rem",
+        marginTop:"5rem"
+        
+         }}>
 
         <h2>ADMIN PAGE</h2>
         <List

@@ -29,7 +29,7 @@ const Profiledetails = () => {
     // console.log(profileData)
     try {
       const response = await axios.post('http://localhost:3000/student/profile', profileData)
-      // console.log(response.data)
+      console.log(response)
       if (response.status === 200) {
         alert(response.data.message)
         inputRef.current.fullname.value = '';

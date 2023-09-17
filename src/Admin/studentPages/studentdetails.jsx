@@ -71,7 +71,7 @@ const Studentdetails = () => {
   //------------------------------------------------------------------
 
   return (
-    <div style={{ width: "80%" }} >
+    <div style={{ width: "70%" ,marginLeft:"25rem"}} >
       {loading ? (
         <h3>Loading...</h3>
       ) : error ? (
@@ -88,7 +88,8 @@ const Studentdetails = () => {
               ref={inputRef}
               onChange={handleSubmit}
             />
-          
+            
+
           </Form>
 
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -114,7 +115,7 @@ const Studentdetails = () => {
                     {e + 1}
                   </TableCell>
                   {/* <TableCell> {data._id}</TableCell> */}
-                  <TableCell onClick={()=> navigate(`/one/${data._id}`)} >{data.userName}</TableCell>
+                  <TableCell onClick={() => navigate(`/one/${data._id}`)} >{data.userName}</TableCell>
                   <TableCell >{data.batch_Number}</TableCell>
                   <TableCell >{data.eMail}</TableCell>
                 </TableRow>

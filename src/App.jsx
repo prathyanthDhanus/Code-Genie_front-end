@@ -11,6 +11,9 @@ import SingleStudentDetails from './Admin/studentPages/singleStudentDetails'
 import Edit from './Pages/edit'
 import ShowAllBatch from './Admin/batchPages/showAllBatch'
 import One from './Admin/studentPages/one'
+import StudentEdit from './Admin/studentPages/studentEdit'
+
+
 
 
 function App() {
@@ -35,6 +38,7 @@ function App() {
             <Route path='/edit' element={<Edit/>}/>
             <Route path='/showallbatches' element={<ShowAllBatch/>}/>
             <Route path='/one/:id' element={<One/>}/>
+            <Route path='/studentedit/:id' element={<StudentEdit/>}/>
 
           </Route>
 

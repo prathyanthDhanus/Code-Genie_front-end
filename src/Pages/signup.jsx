@@ -64,7 +64,7 @@ const Signup = () => {
 
 
     return (
-        <div style={{marginLeft:"18rem"}}>
+        <div style={{marginLeft:"45rem"}}>
 
 
             <Box

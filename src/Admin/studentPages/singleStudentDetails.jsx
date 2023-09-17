@@ -183,8 +183,6 @@ const SingleStudentDetails = () => {
                 />
               </ListItemButton>
 
-
-
               <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
                   <InboxIcon />
@@ -336,6 +334,7 @@ const SingleStudentDetails = () => {
                     id="outlined-required"
                     name="fullname"
                     value={studentData.userName}
+                   
                   />
                 </ListItemButton>
 
