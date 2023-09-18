@@ -1,108 +1,64 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import "../batchPages/batchStyle.css"
 
 const ShowAllBatch = () => {
-    // const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
-    const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
-  const [batch,setBatch] = useState([]);
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
+  const [batch, setBatch] = useState([]);
+  // Initialize the index of the currently open batch
+  const [openBatchIndex, setOpenBatchIndex] = useState(-1);
+  const navigate = useNavigate()
 
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  //------------------------------fetching batch details from the server---------------------------
-
-  useEffect(()=>{
-   const fetchData = async ()=>{
-      try{
-            const response = await axios.get('http://localhost:3000/admin/batch')
-            const data = response.data.data
-            console.log((data));
-            setBatch(data)
-      }catch(error){
-        console.log("Error:",error)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/admin/batch');
+        const data = response.data.data;
+        setBatch(data);
+      } catch (error) {
+        console.log("Error:", error);
       }
-   }  
-   fetchData()
-  },[])
+    }
+    fetchData();
+  }, []);
 
-
+  // Function to toggle the visibility of a specific batch
+  const toggleBatchDetails = (index) => {
+    if (index === openBatchIndex) {
+      // Clicking on an already open batch should close it
+      setOpenBatchIndex(-1);
+    } else {
+      setOpenBatchIndex(index);
+    }
+  };
 
   return (
-    <div>
+    <div style={{ marginLeft: '30rem' }}>
+      <h2> All Batch Details </h2>
+      <div className='batch-div'>
+        {batch.map((item, index) => (
+          <div key={item.id}>
+            <Button
+              className={`batch-button ${index === openBatchIndex ? 'expanded' : ''}`}
+              onClick={() => toggleBatchDetails(index)}
+            >
+              Batch {item} <span>{index === openBatchIndex ? '▼' : '▲'}</span>
+            </Button>
+            {index === openBatchIndex && (
+              <div>
+                {/* Your batch details content goes here */}
+                <a onClick={() => navigate(`/viewbatch/${item}`)}>View the {item} batch's student list.</a> <br/>
 
-<h2> All Batch Details </h2>
-{batch.map((item)=>(
-
-<ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-
-    <Button onClick={()=>console.info("batch1")}>{item}</Button>
-        <Button
-          size="small"
-          aria-controls={open ? 'split-button-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
-          aria-label="select merge strategy"
-          aria-haspopup="menu"
-          onClick={handleToggle}
-        >
-          <ArrowDropDownIcon />
-        </Button>
-      </ButtonGroup>
-      ))}
-      <Popper
-        sx={{
-          zIndex: 1,
-        }}
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id="split-button-menu" autoFocusItem>
-                  <MenuItem>
-                 Show details of students
-                  </MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-
-
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
 
-export default ShowAllBatch
+export default ShowAllBatch;

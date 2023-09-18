@@ -7,12 +7,11 @@ import Footer from './Components/footer'
 import Profiledetails from './Pages/profiledetails'
 import Studentdetails from './Admin/studentPages/studentdetails'
 import Sidebar from './Admin/sidebar'
-import SingleStudentDetails from './Admin/studentPages/singleStudentDetails'
 import Edit from './Pages/edit'
 import ShowAllBatch from './Admin/batchPages/showAllBatch'
 import One from './Admin/studentPages/one'
 import StudentEdit from './Admin/studentPages/studentEdit'
-
+import ViewBatch from './Admin/batchPages/viewBatch'
 
 
 
@@ -34,11 +33,12 @@ function App() {
           <Route element={<Sidebar />}>
           <Route path='/signup' element={<Signup />} />
             <Route path='/studentdetails' element={<Studentdetails />} />
-            <Route path='/singlestudentdetails' element={<SingleStudentDetails/>}/>
             <Route path='/edit' element={<Edit/>}/>
-            <Route path='/showallbatches' element={<ShowAllBatch/>}/>
             <Route path='/one/:id' element={<One/>}/>
             <Route path='/studentedit/:id' element={<StudentEdit/>}/>
+            <Route path='/showallbatches' element={<ShowAllBatch/>}/>
+            <Route path='/viewbatch/:id' element={<ViewBatch />} />
+
 
           </Route>
 

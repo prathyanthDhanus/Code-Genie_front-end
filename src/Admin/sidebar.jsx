@@ -94,17 +94,6 @@ const Sidebar = () => {
                 </Link>
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 2 }}>
-                <Link to="/singlestudentdetails">
-                  <ListItemButton >
-                    <ListItemIcon>
-                      <PersonOutlineIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="View details of a student" />
-                  </ListItemButton>
-                </Link>
-              </ListItemButton>
-
             </List>
           </Collapse>
         </List>

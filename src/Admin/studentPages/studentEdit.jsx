@@ -19,7 +19,7 @@ const StudentEdit = () => {
             try{
                 const response = await axios.get(`http://localhost:3000/admin/student/${id}`)
                 const data = response.data.data;
-                console.log(data);
+                // console.log(data);
                 setStudentData(data)
             }catch(error){
                 console.log("Error", error)
