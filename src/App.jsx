@@ -12,14 +12,15 @@ import ShowAllBatch from './Admin/batchPages/showAllBatch'
 import One from './Admin/studentPages/one'
 import StudentEdit from './Admin/studentPages/studentEdit'
 import ViewBatch from './Admin/batchPages/viewBatch'
-
+import BatchStatus from './Admin/batchPages/batchStatus'
 
 
 function App() {
 
 
-
+ 
   return (
+  
     <>
       <Header />
       <BrowserRouter>
@@ -37,7 +38,8 @@ function App() {
             <Route path='/one/:id' element={<One/>}/>
             <Route path='/studentedit/:id' element={<StudentEdit/>}/>
             <Route path='/showallbatches' element={<ShowAllBatch/>}/>
-            <Route path='/viewbatch/:id' element={<ViewBatch />} />
+            <Route path='/admin/viewbatch/:id' element={<ViewBatch />} />
+            <Route path='/admin/batch/status' element={<BatchStatus />} />
 
 
           </Route>
@@ -46,8 +48,8 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Footer />
-
     </>
+
   )
 }
 

@@ -129,26 +129,17 @@ const Sidebar = () => {
               </ListItemButton>
 
               <ListItemButton sx={{ pl: 2 }}>
-                <Link to="/showallbatches">
+                <Link to="/admin/batch/status">
                   <ListItemButton>
                     <ListItemIcon>
                       <PersonAddAltIcon />
                     </ListItemIcon>
-                    <ListItemText primary="View full student details" />
+                    <ListItemText primary="Show batch status" />
                   </ListItemButton>
                 </Link>
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 2 }}>
-                <Link to="/singlestudentdetails">
-                  <ListItemButton >
-                    <ListItemIcon>
-                      <PersonOutlineIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="View details of a student" />
-                  </ListItemButton>
-                </Link>
-              </ListItemButton>
+             
             </List>
           </Collapse>
         </List>
@@ -177,7 +168,7 @@ const Sidebar = () => {
                     <ListItemIcon>
                       <PersonAddAltIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Register a student" />
+                    <ListItemText primary="Add Topics" />
                   </ListItemButton>
                 </Link>
               </ListItemButton>

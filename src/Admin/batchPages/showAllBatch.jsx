@@ -38,7 +38,7 @@ const ShowAllBatch = () => {
   return (
     <div style={{ marginLeft: '30rem' }}>
       <h2> All Batch Details </h2>
-      <div className='batch-div'>
+      <div className='batch-div'> 
         {batch.map((item, index) => (
           <div key={item.id}>
             <Button
@@ -50,7 +50,7 @@ const ShowAllBatch = () => {
             {index === openBatchIndex && (
               <div>
                 {/* Your batch details content goes here */}
-                <a onClick={() => navigate(`/viewbatch/${item}`)}>View the {item} batch's student list.</a> <br/>
+                <a onClick={() => navigate(`/admin/viewbatch/${item}`)}>View the {item} batch's student list.</a> <br/>
 
               </div>
             )}
