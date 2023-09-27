@@ -13,12 +13,12 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import Box from '@mui/material/Box';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import Button from 'react-bootstrap/Button';
 import { useRef } from 'react';
+import Box from '@mui/material/Box';
 
 
 const One = () => {
@@ -235,7 +235,6 @@ const One = () => {
                     <Divider style={{ background: 'red' }} />
 
                     <a onClick={handleEdit}><EditIcon style={{ color: "orange" }} /></a>
-                    <a onClick={handleDelete}> <DeleteIcon style={{ color: "red" }} /></a>
 
                   </List>
 
@@ -243,6 +242,7 @@ const One = () => {
 
 
               </nav>
+                    <a onClick={handleDelete}> <DeleteIcon style={{ color: "red" }} /></a>
 
             </Box>
           </>

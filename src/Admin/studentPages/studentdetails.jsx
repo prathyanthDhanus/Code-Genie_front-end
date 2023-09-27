@@ -18,7 +18,7 @@ import { useRef } from 'react';
 import { Search } from '@mui/icons-material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Skeleton from '@mui/material/Skeleton';
 
 
 
@@ -73,7 +73,12 @@ const Studentdetails = () => {
   return (
     <div style={{ width: "70%" ,marginLeft:"25rem"}} >
       {loading ? (
+        <>
         <h3>Loading...</h3>
+        <Skeleton  />
+      <Skeleton animation="wave" />
+      <Skeleton animation={false}   />
+      </>
       ) : error ? (
         <p>Error: {error.message}</p>
       ) : (

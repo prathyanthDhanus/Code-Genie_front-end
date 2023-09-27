@@ -24,9 +24,9 @@ const [message,setMessage] = useState('')
         const responseMessage = response.data.message;
         setMessage(responseMessage)
        
-
     }
 
+    
     const deActiveBatchList = async () => {
        
         const response = await axios.get("http://localhost:3000/admin/batch/deactivate/status")

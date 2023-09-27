@@ -1,10 +1,10 @@
 import React from 'react'
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import Box from '@mui/material/Box';
 
 
 const StudentEdit = () => {

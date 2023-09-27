@@ -1,7 +1,5 @@
 import React from 'react'
-import { setError, setLoading } from '../../Redux/Slices/studentSlice';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Table from '@mui/material/Table';
@@ -15,21 +13,24 @@ import Form from 'react-bootstrap/Form';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
-import BatchStatus from './batchStatus';
+import BatchStatus from './batchstatus';
+// import Alert from '@mui/material/Alert';
+
 
 
 
 const ViewBatch = () => {
 
 
-  const dispatch = useDispatch();
+ 
   const inputRef = useRef();
+  const { id } = useParams();
   const [searchedData, setSearchedData] = useState([]);
   const [student, setStudent] = useState([]);
-  const { id } = useParams();
-  // const [isOn, setIsOn] = useState();
+  const [message,setMessage] = useState()
+  const [isOn, setIsOn] = useState(false);
+  // console.log("isOn:",isOn);
   // const [buttonText, setButtonText] = useState('Active');
 
 //-----------------------------getting student list from corresponding batch-------------------
@@ -41,7 +42,9 @@ const ViewBatch = () => {
         const response = await axios.get(`http://localhost:3000/admin/batch/${id}`)
         const data = response.data.data;
         // console.log(response.data.data);
+        // console.log(response);
         setStudent(data)
+        setIsOn(data[0]?.isBatchStatus || false);
       } catch (error) {
         console.log("Error", error)
       }
@@ -68,23 +71,16 @@ const ViewBatch = () => {
 
   const inActivateBatch = async () => {
    
-  
-    try {
-      let BatchStatus
-      if(student[0]?.isBatchStatus===true){
-        BatchStatus = {isBatchStatus:false}
-        // setIsOn(!isOn)
-      }else{
-        BatchStatus = {isBatchStatus:true}
-        // setIsOn(isOn)
-      }
-      
 
-      const response = await axios.patch(`http://localhost:3000/admin/batch/${id}`,BatchStatus)
-      // console.log(response);
+    try {
+     const updateBatchStatus = !isOn
+      
+      const response = await axios.patch(`http://localhost:3000/admin/batch/${id}`,{isBatchStatus:updateBatchStatus})
+      
       if (response.data.status === "success") {
-        // Check if the batch was deactivated
-        if (response.data.data.isActiveBatch === false) {
+        setIsOn(updateBatchStatus);
+        if (updateBatchStatus) {
+          setMessage("Batch")
           console.log("Batch activated successfully");
         } else {
           console.log("Batch deactivated successfully");
@@ -96,19 +92,23 @@ const ViewBatch = () => {
       console.log("Error:", error)
     }
   }
+
+  // useEffect(()=>{
+  //   inActivateBatch()
+  // },[])
   
-  console.log(student[0]?.isBatchStatus);
+  // console.log("student",student[0]?.isBatchStatus);
   
   //----------------------------------------------------------------------
 
   return (
-    
+
     <div style={{ width: "70%", marginLeft: "25rem" }} >
 
       <div style={{ width: "100%" }}>
-       
+      {/* <Alert severity="success">{message}</Alert> */}
 <p>Batch Status:</p>
-  <Switch onClick={inActivateBatch} checked={student[0]?.isBatchStatus}/>
+  <Switch onClick={inActivateBatch} checked={isOn}/>
 
         <TableContainer component={Paper}>
 

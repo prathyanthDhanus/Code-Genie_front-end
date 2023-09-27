@@ -25,6 +25,8 @@ const Sidebar = () => {
     studentSection: false,
     batchSection: false,
     topicSection: false,
+    quizSection:false,
+    attendanceSection:false,
   });
 
   const handleClick = (section) => {
@@ -163,7 +165,7 @@ const Sidebar = () => {
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 2 }}>
 
-                <Link to="/signup">
+                <Link to="/admin/create/topic">
                   <ListItemButton>
                     <ListItemIcon>
                       <PersonAddAltIcon />
@@ -174,23 +176,23 @@ const Sidebar = () => {
               </ListItemButton>
 
               <ListItemButton sx={{ pl: 2 }}>
-                <Link to="/studentDetails">
+                <Link to="/admin/view/domain">
                   <ListItemButton>
                     <ListItemIcon>
                       <PersonAddAltIcon />
                     </ListItemIcon>
-                    <ListItemText primary="View full student details" />
+                    <ListItemText primary="View domain details" />
                   </ListItemButton>
                 </Link>
               </ListItemButton>
 
               <ListItemButton sx={{ pl: 2 }}>
-                <Link to="/singlestudentdetails">
+                <Link to="/admin/view/syllabus">
                   <ListItemButton >
                     <ListItemIcon>
                       <PersonOutlineIcon />
                     </ListItemIcon>
-                    <ListItemText primary="View details of a student" />
+                    <ListItemText primary="View Syllabus" />
                   </ListItemButton>
                 </Link>
               </ListItemButton>
@@ -207,14 +209,14 @@ const Sidebar = () => {
 
         >
 
-          <ListItemButton onClick={() => handleClick('topicSection')}>
+          <ListItemButton onClick={() => handleClick('quizSection')}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
             <ListItemText primary="QUIZ SECTION" />
-            {openStates.topicSection ? <ExpandLess /> : <ExpandMore />}
+            {openStates.quizSection ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-          <Collapse in={openStates.topicSection} timeout="auto" unmountOnExit>
+          <Collapse in={openStates.quizSection} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 2 }}>
 
@@ -262,14 +264,14 @@ const Sidebar = () => {
 
         >
 
-          <ListItemButton onClick={() => handleClick('topicSection')}>
+          <ListItemButton onClick={() => handleClick('attendanceSection')}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
             <ListItemText primary="ATTENDANCE SECTION" />
-            {openStates.topicSection ? <ExpandLess /> : <ExpandMore />}
+            {openStates.attendanceSection ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-          <Collapse in={openStates.topicSection} timeout="auto" unmountOnExit>
+          <Collapse in={openStates.attendanceSection} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 2 }}>
 

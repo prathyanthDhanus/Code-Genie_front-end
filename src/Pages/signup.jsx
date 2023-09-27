@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import { useRef } from 'react'
 // import Button from 'react-bootstrap/Button';
 import * as React from 'react';
@@ -13,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import axios from 'axios';
+import Box from '@mui/material/Box';
 
 
 
@@ -27,7 +27,7 @@ const Signup = () => {
         const userName = inputRef.current.username.value;
         const passWord = inputRef.current.password.value;
         const eMail = inputRef.current.email.value;
-        const batch_Number = inputRef.current.batch_number.value;
+        const batch_Number = "Batch "+inputRef.current.batch_number.value;
 
         // console.log(userName, passWord, batch_Number, eMail)
         try {

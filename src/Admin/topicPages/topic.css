@@ -1,0 +1,30 @@
+.create-topic-form{
+  width: 45rem;
+  margin-left:30rem;
+
+}
+
+.create-topic-form{
+  padding: 2rem;
+}
+/*--------------------------------------------------------------------*/
+
+.viewDomain{
+  display: grid;
+  grid-template-columns: repeat(3,2fr);
+  grid-gap:3rem;
+  justify-content: space-between;
+  
+}
+.viewDomain{
+  max-width: 900fr;
+  margin: auto;
+  margin-right: 5rem;
+}
+/*-------------------------------------------------------------------*/
+.batch-skelton{
+   display: flex;
+   flex-direction: column;
+ align-items: center;
+ 
+}
