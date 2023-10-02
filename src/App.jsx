@@ -15,7 +15,10 @@ import ViewBatch from './Admin/batchPages/viewbatch'
 import BatchStatus from './Admin/batchPages/batchstatus'
 import CreateTopic from './Admin/topicPages/createtopic'
 import ViewDomain from './Admin/topicPages/viewdomain'
-import ViewSyllabus from './Admin/topicPages/viewsyllabus'
+import Viewcategories from './Admin/topicPages/viewcategories'
+import Viewcategorytopics from './Admin/topicPages/viewcategorytopics'
+
+
 
 function App() {
 
@@ -46,7 +49,8 @@ function App() {
 
             <Route path='/admin/create/topic' element={<CreateTopic />} />
             <Route path='/admin/view/domain' element={<ViewDomain />} />
-            <Route path='/admin/view/syllabus' element={<ViewSyllabus />} />
+            <Route path='/admin/view/categories/:id' element={<Viewcategories />} />
+            <Route path='/admin/view/categories/week/:category/:id' element={<Viewcategorytopics />} />
 
 
 

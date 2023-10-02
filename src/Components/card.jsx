@@ -14,7 +14,7 @@ const CustomCard = (props) => {
           <Card.Text>
            {props.cardtext}
           </Card.Text>
-          <Button variant="primary">{props.buttontext}</Button>
+          <Button variant="primary"  onClick={props.onClick}>{props.buttontext}</Button>
         </Card.Body>
       </Card>
     </div>
