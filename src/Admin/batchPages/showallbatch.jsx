@@ -9,7 +9,6 @@ const ShowAllBatch = () => {
 
   const [batch, setBatch] = useState([]);
   // Initialize the index of the currently open batch
-  const [openBatchIndex, setOpenBatchIndex] = useState(-1);
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -25,15 +24,7 @@ const ShowAllBatch = () => {
     fetchData();
   }, []);
 
-  // Function to toggle the visibility of a specific batch
-  const toggleBatchDetails = (index) => {
-    if (index === openBatchIndex) {
-      // Clicking on an already open batch should close it
-      setOpenBatchIndex(-1);
-    } else {
-      setOpenBatchIndex(index);
-    }
-  };
+  
 
   return (
     <div style={{ marginLeft: '30rem' }}>
@@ -42,18 +33,11 @@ const ShowAllBatch = () => {
         {batch.map((item, index) => (
           <div key={item.id}>
             <Button
-              className={`batch-button ${index === openBatchIndex ? 'expanded' : ''}`}
-              onClick={() => toggleBatchDetails(index)}
+             onClick={() => navigate(`/admin/viewbatch/${item}`)}
             >
-              Batch {item} <span>{index === openBatchIndex ? '▼' : '▲'}</span>
+           {item}
             </Button>
-            {index === openBatchIndex && (
-              <div>
-                {/* Your batch details content goes here */}
-                <a onClick={() => navigate(`/admin/viewbatch/${item}`)}>View the {item} batch's student list.</a> <br/>
-
-              </div>
-            )}
+            
           </div>
         ))}
       </div>

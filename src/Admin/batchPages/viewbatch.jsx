@@ -1,39 +1,36 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import axios from 'axios';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import Form from 'react-bootstrap/Form';
 import { useRef } from 'react';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Switch from '@mui/material/Switch';
 import BatchStatus from './batchstatus';
 // import Alert from '@mui/material/Alert';
 
-
-
+// import CardGroup from 'react-bootstrap/CardGroup';
+// import Button from 'react-bootstrap/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const ViewBatch = () => {
 
 
- 
+
   const inputRef = useRef();
   const { id } = useParams();
   const [searchedData, setSearchedData] = useState([]);
   const [student, setStudent] = useState([]);
-  const [message,setMessage] = useState()
   const [isOn, setIsOn] = useState(false);
-  // console.log("isOn:",isOn);
-  // const [buttonText, setButtonText] = useState('Active');
+  const navigate = useNavigate()
 
-//-----------------------------getting student list from corresponding batch-------------------
+
+  //-----------------------------getting student list from corresponding batch-------------------
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,26 +58,20 @@ const ViewBatch = () => {
     setSearchedData(searchedData)
   }
 
-//------------------------------------------------------------------------------
-  // const handleMouseEnter = () => {
-  //   setButtonText('Inactivate Batch');
-
-  // };
-
-//-----------------------------activate and deactivating batch-------------------
+  //-----------------------------activate and deactivating batch-------------------
 
   const inActivateBatch = async () => {
-   
+
 
     try {
-     const updateBatchStatus = !isOn
-      
-      const response = await axios.patch(`http://localhost:3000/admin/batch/${id}`,{isBatchStatus:updateBatchStatus})
-      
+      const updateBatchStatus = !isOn
+
+      const response = await axios.patch(`http://localhost:3000/admin/batch/${id}`, { isBatchStatus: updateBatchStatus })
+
       if (response.data.status === "success") {
         setIsOn(updateBatchStatus);
         if (updateBatchStatus) {
-          setMessage("Batch")
+
           console.log("Batch activated successfully");
         } else {
           console.log("Batch deactivated successfully");
@@ -93,12 +84,8 @@ const ViewBatch = () => {
     }
   }
 
-  // useEffect(()=>{
-  //   inActivateBatch()
-  // },[])
-  
-  // console.log("student",student[0]?.isBatchStatus);
-  
+
+
   //----------------------------------------------------------------------
 
   return (
@@ -106,66 +93,69 @@ const ViewBatch = () => {
     <div style={{ width: "70%", marginLeft: "25rem" }} >
 
       <div style={{ width: "100%" }}>
-      {/* <Alert severity="success">{message}</Alert> */}
-<p>Batch Status:</p>
-  <Switch onClick={inActivateBatch} checked={isOn}/>
-
-        <TableContainer component={Paper}>
-
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search username here....!"
-              className="me-2"
-              aria-label="Search"
-              ref={inputRef}
-              onChange={handleSubmit}
-            />
-
-          </Form>
+        {/* <Alert severity="success">{message}</Alert> */}
+        <p>Batch Status:</p>
+        <Switch onClick={inActivateBatch} checked={isOn} />
 
 
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
 
-            {student ? (
-              <>
+        <Form className="d-flex">
+          <Form.Control
+            type="search"
+            placeholder="Search username here....!"
+            className="me-2"
+            aria-label="Search"
+            ref={inputRef}
+            onChange={handleSubmit}
+          />
 
-              </>
-            ) : (
-              // You can display a loading indicator here if you want
-              <p>Loading...</p>
-            )}
+        </Form>
 
-            {student && student.length > 0 && (
-              <>
-                <TableHead>
-                  <TableRow>
 
-                    <TableCell>Index</TableCell>
-                    <TableCell >User Name</TableCell>
+      
 
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {(searchedData.length > 0 ? searchedData : student).map((data, e) => (
-                    <TableRow
-                      key={data._id}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {e + 1}
-                      </TableCell>
+          {student ? (
+            <>
 
-                      <TableCell >{data.userName}</TableCell>
+            </>
+          ) : (
+            // You can display a loading indicator here if you want
+            <p>Loading...</p>
+          )}
 
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </>
-            )}
-          </Table>
-        </TableContainer>
+          {student && student.length > 0 && (
+            <>
 
+              {(searchedData.length > 0 ? searchedData : student).map((data) => (
+                <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        sx={{ height: 140 }}
+        src='https://d1y78cl34ykkmt.cloudfront.net/ProfileImage/2020224131816458.png'
+        title="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {data.userName}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+        Current attendance status
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small" onClick={()=>navigate(`/admin/student/attendance/${data._id}`)}>Add Attendance</Button>
+        
+      </CardActions>
+    </Card>
+              ))}
+
+            </>
+          )}
+
+
+
+
+
+        
       </div>
 
     </div>

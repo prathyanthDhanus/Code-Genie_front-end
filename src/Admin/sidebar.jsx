@@ -16,7 +16,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
 import { useNavigate } from "react-router-dom";
 import SchoolIcon from '@mui/icons-material/School';
-
+import "./admin.css"
 
 import { Outlet } from 'react-router-dom'
 
@@ -38,18 +38,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className='d-flex' style={{ position: "relative", top: '2rem', marginLeft: "2rem" }}>
-      <div style={{ 
-         position: "fixed", // Fixed position to keep it on the left side
-        top: '1rem',
-        left: 0, // Position it on the left side
-        width: "20%", // Set the desired width
-        height: "100%", // Set the desired height
-        overflowY: "auto", // Enable vertical scrolling when the content overflows
-        marginLeft: "2rem",
-        marginTop:"5rem"
-        
-         }}>
+    <div>
+      <div  className='sidebar-container' >
 
         <h2>ADMIN PAGE</h2>
         <List

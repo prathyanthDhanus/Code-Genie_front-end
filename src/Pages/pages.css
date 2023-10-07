@@ -1,0 +1,14 @@
+.signup-container {
+    margin-left: 20%; /* Adjust to match the sidebar's width */
+    padding: 1rem; /* Add padding for better spacing */
+    
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    /* Reset margin and padding for smaller screens */
+    .signup-container {
+        margin-left: 0;
+        padding: 1rem;
+    }
+}

@@ -13,6 +13,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import axios from 'axios';
 import Box from '@mui/material/Box';
+import "./pages.css"
+
 
 
 
@@ -64,7 +66,7 @@ const Signup = () => {
 
 
     return (
-        <div style={{marginLeft:"45rem"}}>
+        <div className="signup-container" >
 
 
             <Box

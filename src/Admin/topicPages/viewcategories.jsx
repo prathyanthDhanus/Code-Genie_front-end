@@ -17,7 +17,7 @@ useEffect(()=>{
   const fetchData = async ()=>{
     try{
      const response = await axios.get(`http://localhost:3000/admin/domain/category/${id}`)
-     console.log(response);
+    //  console.log(response);
      const data = response.data.data
     //  console.log(data);
     const categorySet = new Set();

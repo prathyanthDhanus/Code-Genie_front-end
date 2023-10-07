@@ -14,7 +14,7 @@ export const fetchData = async (setViewBatch, setLoading) => {
   try {
     const response = await axios.get("http://localhost:3000/admin/domain");
     const data = response.data.data;
-    console.log(data);
+    // console.log(data);
     setViewBatch(data);
     setLoading(false);
   } catch (error) {

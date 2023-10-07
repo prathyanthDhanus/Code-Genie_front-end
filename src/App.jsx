@@ -17,8 +17,8 @@ import CreateTopic from './Admin/topicPages/createtopic'
 import ViewDomain from './Admin/topicPages/viewdomain'
 import Viewcategories from './Admin/topicPages/viewcategories'
 import Viewcategorytopics from './Admin/topicPages/viewcategorytopics'
-
-
+import Attendance from './Admin/attendancePages/attendance'
+import Edittopic from './Admin/topicPages/edittopic'
 
 function App() {
 
@@ -41,7 +41,7 @@ function App() {
             <Route path='/studentdetails' element={<Studentdetails />} />
             <Route path='/edit' element={<Edit/>}/>
             <Route path='/one/:id' element={<One/>}/>
-            <Route path='/studentedit/:id' element={<StudentEdit/>}/>
+            {/* <Route path='/studentedit/:id' element={<StudentEdit/>}/> */}
 
             <Route path='/showallbatches' element={<ShowAllBatch/>}/>
             <Route path='/admin/viewbatch/:id' element={<ViewBatch />} />
@@ -51,7 +51,9 @@ function App() {
             <Route path='/admin/view/domain' element={<ViewDomain />} />
             <Route path='/admin/view/categories/:id' element={<Viewcategories />} />
             <Route path='/admin/view/categories/week/:category/:id' element={<Viewcategorytopics />} />
-
+            <Route path='/admin/student/attendance/:id' element={<Attendance />} />
+            <Route path='/admin/topic/edit/:id' element={<Edittopic />} />
+         
 
 
 
