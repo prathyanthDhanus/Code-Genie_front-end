@@ -12,7 +12,6 @@ const StudentEdit = () => {
     const [studentData, setStudentData] = useState([]);
     const {id}= useParams()
 
-
     useEffect(()=>{
         const fetchData = async ()=>{
 

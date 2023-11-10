@@ -97,8 +97,6 @@ const ViewBatch = () => {
         <p>Batch Status:</p>
         <Switch onClick={inActivateBatch} checked={isOn} />
 
-
-
         <Form className="d-flex">
           <Form.Control
             type="search"

@@ -6,6 +6,9 @@ import Form from 'react-bootstrap/Form';
 import '../topicPages/topic.css';
 import axios from 'axios';
 
+
+
+
 const CreateTopic = () => {
   const inputRef = useRef();
 
@@ -20,7 +23,7 @@ const CreateTopic = () => {
     day : inputRef.current.day.value,
     
   }
-  console.log(topicData);
+  // console.log(topicData);
   try{
      const response =  await axios.post("http://localhost:3000/admin/topic",topicData)
      console.log(response)

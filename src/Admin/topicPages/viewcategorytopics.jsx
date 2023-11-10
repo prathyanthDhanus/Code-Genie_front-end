@@ -48,7 +48,7 @@ const viewcategorytopics = () => {
         try {
           const response = await axios.get(`http://localhost:3000/admin/domain/category/${id}`);
           const data = response.data.data;
-          // console.log(data);
+          // console.log("datas",data);
           const filteredData = data.filter((item) => item.category === category);
         
           // Organize the filtered data into weeks
@@ -83,7 +83,7 @@ const viewcategorytopics = () => {
     <div style={{marginLeft:"25rem"}}>
 
     
-<a onClick={()=>navigate(`/admin/topic/edit/${id}`)}><EditIcon /></a>
+
     <h1>React Categories:</h1>
  
     {data.map((weekData) => (
@@ -93,19 +93,21 @@ const viewcategorytopics = () => {
         <TableHead>
           <TableRow>
             <StyledTableCell> <h2>{weekData.week}</h2></StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-      <StyledTableRow key={weekData.week}>
-              <StyledTableCell component="th" scope="row">
-                Topic
-              </StyledTableCell>
-             
+            </TableRow>
+            </TableHead>
+            <TableBody>
+            <StyledTableRow key={weekData.week}>
+            <StyledTableCell component="th" scope="row">
+            Topic
+            </StyledTableCell>
+            
             </StyledTableRow>
-          <ul>
-
+            <ul>
             {weekData.data.map((item) => (  
-              <li key={item._id} >{item.topicName}</li>
+              <li key={item._id}>
+                
+                <a onClick={() => navigate(`/admin/topic/edit/${item._id}`)}>{item.topicName}</a>
+                </li>
             ))}
           </ul>
       </TableBody>

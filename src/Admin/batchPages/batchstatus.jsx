@@ -55,8 +55,10 @@ const [message,setMessage] = useState('')
     <div >
 
     <Button key={index}  color="secondary">{item}</Button>
+   
     </div>
 ))}
+
 
         </div>
     )

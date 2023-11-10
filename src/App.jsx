@@ -19,6 +19,17 @@ import Viewcategories from './Admin/topicPages/viewcategories'
 import Viewcategorytopics from './Admin/topicPages/viewcategorytopics'
 import Attendance from './Admin/attendancePages/attendance'
 import Edittopic from './Admin/topicPages/edittopic'
+import AddQuestions from './Admin/quizPages/addquestions'
+
+
+
+
+
+
+
+
+
+
 
 function App() {
 
@@ -51,9 +62,12 @@ function App() {
             <Route path='/admin/view/domain' element={<ViewDomain />} />
             <Route path='/admin/view/categories/:id' element={<Viewcategories />} />
             <Route path='/admin/view/categories/week/:category/:id' element={<Viewcategorytopics />} />
-            <Route path='/admin/student/attendance/:id' element={<Attendance />} />
             <Route path='/admin/topic/edit/:id' element={<Edittopic />} />
-         
+            
+            <Route path='/admin/create/quiz' element={<AddQuestions />} />
+            
+            
+            <Route path='/admin/student/attendance/:id' element={<Attendance />} />
 
 
 
@@ -69,3 +83,4 @@ function App() {
 }
 
 export default App
+

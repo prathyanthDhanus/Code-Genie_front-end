@@ -176,16 +176,6 @@ const Sidebar = () => {
                 </Link>
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 2 }}>
-                <Link to="/admin/view/syllabus">
-                  <ListItemButton >
-                    <ListItemIcon>
-                      <PersonOutlineIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="View Syllabus" />
-                  </ListItemButton>
-                </Link>
-              </ListItemButton>
             </List>
           </Collapse>
         </List>
@@ -210,12 +200,12 @@ const Sidebar = () => {
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 2 }}>
 
-                <Link to="/signup">
+                <Link to="/admin/create/quiz">
                   <ListItemButton>
                     <ListItemIcon>
                       <PersonAddAltIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Register a student" />
+                    <ListItemText primary="Create Quiz Questions" />
                   </ListItemButton>
                 </Link>
               </ListItemButton>
@@ -299,8 +289,6 @@ const Sidebar = () => {
             </List>
           </Collapse>
         </List>
-
-
 
 
       </div>
