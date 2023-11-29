@@ -235,60 +235,7 @@ const Sidebar = () => {
           </Collapse>
         </List>
 
-        {/*--------------------------------------attendence section----------------------------------*/}
-
-        <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: "ButtonFace", marginTop: "1rem" }}
-          component="nav"
-          aria-labelledby="nested-list-subheader"
-
-        >
-
-          <ListItemButton onClick={() => handleClick('attendanceSection')}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="ATTENDANCE SECTION" />
-            {openStates.attendanceSection ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={openStates.attendanceSection} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 2 }}>
-
-                <Link to="/signup">
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <PersonAddAltIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Register a student" />
-                  </ListItemButton>
-                </Link>
-              </ListItemButton>
-
-              <ListItemButton sx={{ pl: 2 }}>
-                <Link to="/studentDetails">
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <PersonAddAltIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="View full student details" />
-                  </ListItemButton>
-                </Link>
-              </ListItemButton>
-
-              <ListItemButton sx={{ pl: 2 }}>
-                <Link to="/singlestudentdetails">
-                  <ListItemButton >
-                    <ListItemIcon>
-                      <PersonOutlineIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="View details of a student" />
-                  </ListItemButton>
-                </Link>
-              </ListItemButton>
-            </List>
-          </Collapse>
-        </List>
+        
 
 
       </div>

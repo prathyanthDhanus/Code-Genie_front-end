@@ -16,7 +16,7 @@ const AddQuestions = () => {
     const questionData = {
       domainName: inputRef.current.domainName.value,
       week: inputRef.current.week.value,
-      day: inputRef.current.day.value,
+      category: inputRef.current.category.value,
       questions: inputRef.current.questions.value,
       optionA: inputRef.current.optionA.value,
       optionB: inputRef.current.optionB.value,
@@ -66,16 +66,18 @@ const AddQuestions = () => {
         <div>
 
           <TextField id="standard-basic" label="Domain Name" variant="standard" name='domainName' />
+          <TextField id="standard-basic" label="Category" variant="standard" name='category' />
           <TextField id="standard-basic" label="Week" variant="standard" name='week' />
-          <TextField id="standard-basic" label="Day" variant="standard" name='day' />
+          
           <TextField
             id="outlined-multiline-static"
             label="Add Questions"
             multiline
             rows={4}
             name='questions'
+            
           />
-
+         
           <TextField id="standard-basic" label="Option A" variant="standard" name='optionA' />
           <TextField id="standard-basic" label="Option B" variant="standard" name='optionB' />
           <TextField id="standard-basic" label="Option C" variant="standard" name='optionC' />

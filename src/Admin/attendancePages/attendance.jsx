@@ -14,7 +14,7 @@ import axios from 'axios';
 
 const Attendance = () => {
     const { id } = useParams();
-
+console.log(id);
     
     // console.log(id);
     const handleAttendance = async () => {

@@ -17,10 +17,32 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import MyDatePicker from '../../Components/datepiker';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+
+
+
+
+
 
 const ViewBatch = () => {
 
-
+  const status = [
+    {
+      value: 'Present',
+      label: 'Present',
+    },
+    {
+      value: 'Absent',
+      label: 'Absent',
+    },
+    {
+      value: 'Late',
+      label: 'Late',
+    },
+  ];
+  
 
   const inputRef = useRef();
   const { id } = useParams();
@@ -28,8 +50,37 @@ const ViewBatch = () => {
   const [student, setStudent] = useState([]);
   const [isOn, setIsOn] = useState(false);
   const navigate = useNavigate()
+  const [selectedDate, setSelectedDate] = useState(null)
+  const [selectedStatus, setSelectedStatus] = useState('Present');
 
+  //--------------------------------attendance----------------------------------
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleStatusChange = (event) => {
+    setSelectedStatus(event.target.value);
+  };
+
+  const handleAttendanceSubmit = async () => {
+    console.log(selectedDate,selectedStatus);
+    try {
+      const response = await axios.post(`http://localhost:3000/admin/student/attendance/${id}`, {
+        date: selectedDate,
+        status: selectedStatus,
+      
+      });
+
+      if (response.data.status === "success") {
+        console.log("Attendance submitted successfully");
+      } else {
+        console.log("Failed to submit attendance");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
   //-----------------------------getting student list from corresponding batch-------------------
 
   useEffect(() => {
@@ -110,51 +161,59 @@ const ViewBatch = () => {
         </Form>
 
 
-      
+        <div>
 
-          {student ? (
-            <>
-
-            </>
-          ) : (
-            // You can display a loading indicator here if you want
-            <p>Loading...</p>
-          )}
-
-          {student && student.length > 0 && (
-            <>
-
+            {student && student.length > 0 && (
+              <>
+              
               {(searchedData.length > 0 ? searchedData : student).map((data) => (
                 <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        src='https://d1y78cl34ykkmt.cloudfront.net/ProfileImage/2020224131816458.png'
-        title="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {data.userName}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-        Current attendance status
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" onClick={()=>navigate(`/admin/student/attendance/${data._id}`)}>Add Attendance</Button>
-        
-      </CardActions>
-    </Card>
-              ))}
-
-            </>
-          )}
-
-
-
-
-
-        
-      </div>
+                <CardMedia
+                sx={{ height: 140 }}
+                src='https://m.media-amazon.com/images/I/31o-VWlOtKL._AC_UF1000,1000_QL80_.jpg'
+                title="green iguana"
+                />
+                <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                {data.userName}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                <MyDatePicker selectedDate={selectedDate} handleDateChange={handleDateChange} />
+                </Typography>
+                <TextField
+                id="outlined-select-currency"
+                select
+                label="Select"
+                defaultValue={selectedStatus}
+                onChange={handleStatusChange}
+                helperText="Please select the status"
+              >
+                {status.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+                </CardContent>
+                <CardActions>
+                <Button size="small" onClick={()=>navigate(`/admin/student/attendance/${data._id}`)}>View Full Attendance</Button>
+                <Button size="small" onClick={() => handleAttendanceSubmit(data._id)}>
+                Submit Attendance
+              </Button>
+                </CardActions>
+                </Card>
+                ))}
+                
+                </>
+                )}
+                
+                
+                
+                
+                
+                </div>
+                
+                </div>
 
     </div>
   )
