@@ -113,9 +113,9 @@ const Studentdetails = () => {
       );
 
       if (response.data.status === "success") {
-        console.log("Attendance submitted successfully");
+        alert("Attendance submitted successfully");
       } else {
-        console.log("Failed to submit attendance");
+        alert("Failed to submit attendance");
       }
     } catch (error) {
       console.log("Error:", error);
@@ -177,21 +177,28 @@ const Studentdetails = () => {
                       <TableCell>{data.batch_Number}</TableCell>
                       <TableCell>{data.eMail}</TableCell>
                       <TextField
-                        id="outlined-select-currency"
-                        select
-                        defaultValue={selectedStatus}
-  onChange={(event) => {
-    handleStatusChange(event); // Handle status change
-    setId(data._id); // Save the selected student ID to the state
-    handleAttendanceSubmit(data._id); 
-  }}
-                      >
-                        {status.map((option) => (
-                          <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                          </MenuItem>
-                        ))}
-                      </TextField>
+                      id="outlined-select-currency"
+                      select
+                      label="Select"
+                      defaultValue={selectedStatus}
+                      onChange={handleStatusChange}
+                      helperText="Please select the status"
+                    >
+                      {status.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                    <Button
+                      size="small"
+                      onClick={() => {
+                        setId(data._id); // Save the selected student ID to the state
+                        handleAttendanceSubmit();
+                      }}
+                    >
+                      Submit Attendance
+                    </Button>
                      
                     </TableRow>
                   )
